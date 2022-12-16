@@ -62,9 +62,6 @@ function App() {
         profile1 = timbres;
       })
       .then(() => {
-        console.log(profile1[4]);
-      })
-      .then(() => {
         const captureDataTime = () => {
           const current = new Date();
           const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
@@ -80,7 +77,7 @@ function App() {
         captureDataTime();
         //si los user nuevos se agregan en la primera posicion(la 0) de la lista Cards de la db , cambiar .lenghth por 0
         const capturarHorarioPresionado = () => {
-          if (profile1[3].doorBell = true) {
+          if (profile1[2].doorBell = true) {
             console.log("el timbre se presionó")
           }
         }
@@ -88,7 +85,7 @@ function App() {
         const marcarTarjetaYMostrarAcceso = () => {
           //muestra el ultimo usuario que paso la tarjeta
           const cardsLength = profile1[0].length - 1;
-          if (profile1[3].cardScan = true) {
+          if (profile1[2].cardScan = true) {
             console.log(profile1[0][cardsLength])
           }
 
@@ -98,66 +95,63 @@ function App() {
         }
 
         const notificar = () => {
-          if (profile1[3].unlockDoor = true) { alert("la puerte esta abierta") }
+          if (profile1[2].unlockDoor = true) { alert("la puerte esta abierta") }
         }
 
-        const modificarEstado = () => {
-          // const db = getDatabase();
-          // const dbRef = ref(db);
-          // put(child(dbRef, 'profile'))
-          //   .then((snapshot) => {
-          //     var timbres = [];
-          //     snapshot.forEach(childSnapshot => {
-          //       timbres.push(childSnapshot.val());
-          //     });
-          //   })
+        const modificarEstadoEnabled = () => {
+          if (profile1[0][0].enabled == true) {
+            console.log("usuario dado de alta");
+          }
+          else { console.log("usuario dado de baja"); }
         }
 
         capturarHorarioPresionado();
         marcarTarjetaYMostrarAcceso();
         notificar();
+        modificarEstadoEnabled();
       })
   }
 
   return (
-<div id="main">
+    <div id="main">
 
-<div id="login">
-    <h1>LOG IN</h1>
-      <input type={"email"} placeholder="email" onChange={(e) => setEmail(e.target.value)} />
+      <div id="login">
+        <h1>LOG IN</h1>
+        <input type={"email"} placeholder="email" onChange={(e) => setEmail(e.target.value)} />
         <input type={"password"} placeholder="pass" onChange={(e) => setPassword(e.target.value)} />
         <button onClick={signUp}>CREAR CUENTA</button>
         <button onClick={logIn}>INGRESAR</button>
-</div>
+      </div>
 
-<div id="app"> 
-    <section>
-    <button id="bt_cerrar">SALIR</button>
-        <div>
+      <div id="app">
+        <section>
+          <button id="bt_cerrar">SALIR</button>
+          <div>
             <div className="imagen"></div>
             <h2>Usuario #34624</h2>
-        </div>
-    </section>
+          </div>
+        </section>
 
-    <section id="historialTimbre">
-        <h1>Registro del timbre</h1>
-        <article>
+        <section id="historialTimbre">
+          <h1>Registro del timbre</h1>
+          <article>
             <img src={require('./img/bell.svg')} />
             <hr />
             <div id="tiempo">
-                <h3>Timbre presionado por UserX</h3>
-                <p>18:05:32hs el 16/12/2022</p>
-                <p>Acceso: denegado</p> 
+              <h3>Timbre presionado por UserX</h3>
+              <p>18:05:32hs el 16/12/2022</p>
+              <p>Acceso: denegado</p>
             </div>
-        </article>
-    </section>
+          </article>
+        </section>
 
-</div>
-<footer>
-    <p>Todos los derechos reservados</p>
-</footer>
-</div>
+      </div>
+      <footer>
+        <p>Todos los derechos reservados</p>
+      </footer>
+    </div>
 
-  );}
+  );
+}
 
 export default App;
