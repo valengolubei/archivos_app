@@ -63,6 +63,60 @@ function App() {
       .then(() => {
         console.log(profile1[4]);
       })
+      .then(() => {
+        const captureDataTime = () => {
+          const current = new Date();
+          const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+          const time = current.toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+          });
+          console.log(time);
+          console.log(date)
+        }
+
+        captureDataTime();
+        //si los user nuevos se agregan en la primera posicion(la 0) de la lista Cards de la db , cambiar .lenghth por 0
+        const capturarHorarioPresionado = () => {
+          if (profile1[4].doorBell = true) {
+            console.log("el timbre se presionó")
+          }
+        }
+
+        const marcarTarjetaYMostrarAcceso = () => {
+          //muestra el ultimo usuario que paso la tarjeta
+          const cardsLength = profile1[0].length - 1;
+          if (profile1[4].cardScan = true) {
+            console.log(profile1[0][cardsLength])
+          }
+
+          //poner si tiene o no accesso el user
+          if (profile1[0][cardsLength].enabled == true) { console.log(profile1[0][cardsLength] + " tiene accesso") }
+          if (profile1[0][cardsLength].enabled == false) { console.log(profile1[0][cardsLength].username + " no tiene accesso") }
+        }
+
+        const notificar = () => {
+          if (profile1[4].unlockDoor = true) { alert("la puerte esta abierta") }
+        }
+
+        const modificarEstado = () => {
+          // const db = getDatabase();
+          // const dbRef = ref(db);
+          // put(child(dbRef, 'profile'))
+          //   .then((snapshot) => {
+          //     var timbres = [];
+          //     snapshot.forEach(childSnapshot => {
+          //       timbres.push(childSnapshot.val());
+          //     });
+          //   })
+        }
+
+        capturarHorarioPresionado();
+        marcarTarjetaYMostrarAcceso();
+        notificar();
+      })
+
   }
 
   return (
@@ -75,6 +129,7 @@ function App() {
       </div>
     </div>
   );
+
 }
 
 export default App;
