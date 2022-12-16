@@ -10,6 +10,16 @@ import { getDatabase, child, ref, onValue, get } from "firebase/database";
 function App() {
 
   var profile1 = [];
+// var listaEstructuraRegistro = [];
+
+  /*class EstructuraRegistro {
+    constructor(userName, date, altaBajaUser, accessTime) {
+      this.userName = userName;
+      this.date = date;
+      this.altaBajaUser = altaBajaUser;
+      this.accessTime = accessTime;
+    }
+  }*/
 
   const auth = getAuth(app);
 
@@ -72,6 +82,7 @@ function App() {
           });
           console.log(time);
           console.log(date)
+          //const timeAndDate = ("A las "+ time + " el " + date);
         }
 
         captureDataTime();
@@ -88,7 +99,6 @@ function App() {
           if (profile1[2].cardScan = true) {
             console.log(profile1[0][cardsLength])
           }
-
           //poner si tiene o no accesso el user
           if (profile1[0][cardsLength].enabled == true) { console.log(profile1[0][cardsLength] + " tiene accesso") }
           if (profile1[0][cardsLength].enabled == false) { console.log(profile1[0][cardsLength].username + " no tiene accesso") }
@@ -105,11 +115,25 @@ function App() {
           else { console.log("usuario dado de baja"); }
         }
 
+        const modificarHorarioAccess = () => {
+          const startTime = profile1[0][0].accessTimes[0][1];
+          const endTime = profile1[0][0].accessTimes[0][0];
+          console.log(startTime+endTime)
+        }
+
         capturarHorarioPresionado();
         marcarTarjetaYMostrarAcceso();
         notificar();
         modificarEstadoEnabled();
+        modificarHorarioAccess();
       })
+
+       /* const userName = profile1[0][cardsLength].username;
+        const date = timeAndDate;
+        const altaBajaUser = profile1[0][cardsLength].enabled;
+        const accessTime = profile1[0][cardsLength].accessTime;
+        const estructura = new EstructuraRegistro(userName, date, altaBajaUser, accessTime);
+        listaEstructuraRegistro.push(estructura);*/
   }
 
   return (
