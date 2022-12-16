@@ -108,7 +108,7 @@ function App() {
             console.log(profile1[0][cardsLength])
           }
           //poner si tiene o no accesso el user
-          if (profile1[0][cardsLength].enabled == true) { console.log(profile1[0][cardsLength] + " tiene accesso") }
+          if (profile1[0][cardsLength].enabled == true) { console.log(profile1[0][cardsLength].username + " tiene accesso") }
           if (profile1[0][cardsLength].enabled == false) { console.log(profile1[0][cardsLength].username + " no tiene accesso") }
         }
 
@@ -160,7 +160,7 @@ function App() {
           <button id="bt_cerrar">SALIR</button>
           <div>
             <div className="imagen"></div>
-            <h2>Usuario #34624</h2>
+            <h2>Dueño del timbre</h2>
           </div>
         </section>
 
@@ -174,7 +174,7 @@ function App() {
                 <h3>Timbre presionado por UserX</h3>
                 <p>18:05:32hs el 16/12/2022</p>
                 <h5>Acceso: denegado</h5>
-                <p>Time access: 14.00 to 23.34</p>
+                <p>Habilitado: de 14.00 a 23.34</p>
               </div>
             </div>
 
