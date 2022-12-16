@@ -48,11 +48,6 @@ h1 {
 
 article {
   border-radius: 1.5em;
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: space-evenly;
-  align-items: center;
   width: 90%;
   background-color: #E6E6E6;
   padding: 1em;
@@ -126,4 +121,19 @@ hr {
   border: 1px solid gray;
   height: 80px;
   margin: 2px;
+}
+
+.btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.infoRegistro {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-evenly;
+  align-items: center;
 }

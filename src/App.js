@@ -10,7 +10,7 @@ import { getDatabase, child, ref, onValue, get } from "firebase/database";
 function App() {
 
   var profile1 = [];
-// var listaEstructuraRegistro = [];
+  // var listaEstructuraRegistro = [];
 
   /*class EstructuraRegistro {
     constructor(userName, date, altaBajaUser, accessTime) {
@@ -56,6 +56,14 @@ function App() {
         const errorCode = error.code;
         console.log(errorCode);
       });
+  }
+
+  const bajaUsuario = () => {
+
+  }
+
+  const altaUsuario = () => {
+
   }
 
   const getInfoDb = () => {
@@ -118,7 +126,7 @@ function App() {
         const modificarHorarioAccess = () => {
           const startTime = profile1[0][0].accessTimes[0][1];
           const endTime = profile1[0][0].accessTimes[0][0];
-          console.log(startTime+endTime)
+          console.log(startTime + endTime)
         }
 
         capturarHorarioPresionado();
@@ -128,12 +136,12 @@ function App() {
         modificarHorarioAccess();
       })
 
-       /* const userName = profile1[0][cardsLength].username;
-        const date = timeAndDate;
-        const altaBajaUser = profile1[0][cardsLength].enabled;
-        const accessTime = profile1[0][cardsLength].accessTime;
-        const estructura = new EstructuraRegistro(userName, date, altaBajaUser, accessTime);
-        listaEstructuraRegistro.push(estructura);*/
+    /* const userName = profile1[0][cardsLength].username;
+     const date = timeAndDate;
+     const altaBajaUser = profile1[0][cardsLength].enabled;
+     const accessTime = profile1[0][cardsLength].accessTime;
+     const estructura = new EstructuraRegistro(userName, date, altaBajaUser, accessTime);
+     listaEstructuraRegistro.push(estructura);*/
   }
 
   return (
@@ -159,12 +167,20 @@ function App() {
         <section id="historialTimbre">
           <h1>Registro del timbre</h1>
           <article>
-            <img src={require('./img/bell.svg')} />
+            <div className='infoRegistro'>
+            <img src={require('./img/bell.png')} />
             <hr />
-            <div id="tiempo">
-              <h3>Timbre presionado por UserX</h3>
-              <p>18:05:32hs el 16/12/2022</p>
-              <p>Acceso: denegado</p>
+              <div id="tiempo">
+                <h3>Timbre presionado por UserX</h3>
+                <p>18:05:32hs el 16/12/2022</p>
+                <h5>Acceso: denegado</h5>
+                <p>Time access: 14.00 to 23.34</p>
+              </div>
+            </div>
+
+            <div className="btns">
+              <button onClick={bajaUsuario}>DAR DE BAJA</button>
+              <button onClick={altaUsuario}>DAR DE ALTA</button>
             </div>
           </article>
         </section>
