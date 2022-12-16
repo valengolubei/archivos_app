@@ -80,7 +80,7 @@ function App() {
         captureDataTime();
         //si los user nuevos se agregan en la primera posicion(la 0) de la lista Cards de la db , cambiar .lenghth por 0
         const capturarHorarioPresionado = () => {
-          if (profile1[4].doorBell = true) {
+          if (profile1[3].doorBell = true) {
             console.log("el timbre se presionó")
           }
         }
@@ -88,7 +88,7 @@ function App() {
         const marcarTarjetaYMostrarAcceso = () => {
           //muestra el ultimo usuario que paso la tarjeta
           const cardsLength = profile1[0].length - 1;
-          if (profile1[4].cardScan = true) {
+          if (profile1[3].cardScan = true) {
             console.log(profile1[0][cardsLength])
           }
 
@@ -98,7 +98,7 @@ function App() {
         }
 
         const notificar = () => {
-          if (profile1[4].unlockDoor = true) { alert("la puerte esta abierta") }
+          if (profile1[3].unlockDoor = true) { alert("la puerte esta abierta") }
         }
 
         const modificarEstado = () => {
@@ -120,33 +120,21 @@ function App() {
   }
 
   return (
-    // <div className="main">
-    //   <div className="App">
-    //     <input type={"email"} placeholder="email" onChange={(e) => setEmail(e.target.value)} />
-    //     <input type={"password"} placeholder="pass" onChange={(e) => setPassword(e.target.value)} />
-    //     <button onClick={signUp}>Crear cuenta</button>
-    //     <button onClick={logIn}>Ingresar</button>
-    //   </div>
-    // </div>
-
-<div className="App">
 <div id="main">
 
 <div id="login">
     <h1>LOG IN</h1>
-    <form>
       <input type={"email"} placeholder="email" onChange={(e) => setEmail(e.target.value)} />
         <input type={"password"} placeholder="pass" onChange={(e) => setPassword(e.target.value)} />
         <button onClick={signUp}>CREAR CUENTA</button>
         <button onClick={logIn}>INGRESAR</button>
-    </form>
 </div>
 
 <div id="app"> 
     <section>
     <button id="bt_cerrar">SALIR</button>
         <div>
-            <div class="imagen"></div>
+            <div className="imagen"></div>
             <h2>Usuario #34624</h2>
         </div>
     </section>
@@ -168,7 +156,6 @@ function App() {
 <footer>
     <p>Todos los derechos reservados</p>
 </footer>
-</div>
 </div>
 
   );}
