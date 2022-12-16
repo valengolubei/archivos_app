@@ -55,6 +55,7 @@ function App() {
       .then((snapshot) => {
         var timbres = [];
         snapshot.forEach(childSnapshot => {
+
           timbres.push(childSnapshot.val());
         });
         console.log(timbres);
@@ -116,20 +117,60 @@ function App() {
         marcarTarjetaYMostrarAcceso();
         notificar();
       })
-
   }
 
   return (
-    <div className="main">
-      <div className="App">
-        <input type={"email"} placeholder="email" onChange={(e) => setEmail(e.target.value)} />
-        <input type={"password"} placeholder="pass" onChange={(e) => setPassword(e.target.value)} />
-        <button onClick={signUp}>Crear cuenta</button>
-        <button onClick={logIn}>Ingresar</button>
-      </div>
-    </div>
-  );
+    // <div className="main">
+    //   <div className="App">
+    //     <input type={"email"} placeholder="email" onChange={(e) => setEmail(e.target.value)} />
+    //     <input type={"password"} placeholder="pass" onChange={(e) => setPassword(e.target.value)} />
+    //     <button onClick={signUp}>Crear cuenta</button>
+    //     <button onClick={logIn}>Ingresar</button>
+    //   </div>
+    // </div>
 
-}
+<div className="App">
+<div id="main">
+
+<div id="login">
+    <h1>LOG IN</h1>
+    <form>
+      <input type={"email"} placeholder="email" onChange={(e) => setEmail(e.target.value)} />
+        <input type={"password"} placeholder="pass" onChange={(e) => setPassword(e.target.value)} />
+        <button onClick={signUp}>CREAR CUENTA</button>
+        <button onClick={logIn}>INGRESAR</button>
+    </form>
+</div>
+
+<div id="app"> 
+    <section>
+    <button id="bt_cerrar">SALIR</button>
+        <div>
+            <div class="imagen"></div>
+            <h2>Usuario #34624</h2>
+        </div>
+    </section>
+
+    <section id="historialTimbre">
+        <h1>Registro del timbre</h1>
+        <article>
+            <img src={require('./img/bell.svg')} />
+            <hr />
+            <div id="tiempo">
+                <h3>Timbre presionado por UserX</h3>
+                <p>18:05:32hs el 16/12/2022</p>
+                <p>Acceso: denegado</p> 
+            </div>
+        </article>
+    </section>
+
+</div>
+<footer>
+    <p>Todos los derechos reservados</p>
+</footer>
+</div>
+</div>
+
+  );}
 
 export default App;
