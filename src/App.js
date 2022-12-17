@@ -6,10 +6,20 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { getDatabase, child, ref, onValue, get } from "firebase/database";
+import 'firebase/compat/database';
 
 function App() {
 
   var profile1 = [];
+  var current;
+  var date;
+  var time;
+  var cardsLength;
+  var startTime;
+  var endTime;
+  const db = getDatabase();
+  const dbRef = ref(db);
+
   // var listaEstructuraRegistro = [];
 
   /*class EstructuraRegistro {
@@ -58,22 +68,11 @@ function App() {
       });
   }
 
-  const bajaUsuario = () => {
-
-  }
-
-  const altaUsuario = () => {
-
-  }
-
   const getInfoDb = () => {
-    const db = getDatabase();
-    const dbRef = ref(db);
     get(child(dbRef, 'profile'))
       .then((snapshot) => {
         var timbres = [];
         snapshot.forEach(childSnapshot => {
-
           timbres.push(childSnapshot.val());
         });
         console.log(timbres);
@@ -81,9 +80,9 @@ function App() {
       })
       .then(() => {
         const captureDataTime = () => {
-          const current = new Date();
-          const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
-          const time = current.toLocaleTimeString("en-US", {
+          current = new Date();
+          date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+          time = current.toLocaleTimeString("en-US", {
             hour: "2-digit",
             minute: "2-digit",
             second: "2-digit"
@@ -96,53 +95,139 @@ function App() {
         captureDataTime();
         //si los user nuevos se agregan en la primera posicion(la 0) de la lista Cards de la db , cambiar .lenghth por 0
         const capturarHorarioPresionado = () => {
-          if (profile1[2].doorBell = true) {
+          if (profile1[3].doorBell = true) {
             console.log("el timbre se presionó")
           }
         }
 
         const marcarTarjetaYMostrarAcceso = () => {
           //muestra el ultimo usuario que paso la tarjeta
-          const cardsLength = profile1[0].length - 1;
-          if (profile1[2].cardScan = true) {
+          cardsLength = profile1[0].length - 1;
+          if (profile1[3].cardScan === true) {
             console.log(profile1[0][cardsLength])
           }
           //poner si tiene o no accesso el user
-          if (profile1[0][cardsLength].enabled == true) { console.log(profile1[0][cardsLength].username + " tiene accesso") }
-          if (profile1[0][cardsLength].enabled == false) { console.log(profile1[0][cardsLength].username + " no tiene accesso") }
+          if (profile1[0][cardsLength].enabled === true) { console.log(profile1[0][cardsLength].username + " tiene accesso") }
+          if (profile1[0][cardsLength].enabled === false) { console.log(profile1[0][cardsLength].username + " no tiene accesso") }
         }
 
         const notificar = () => {
-          if (profile1[2].unlockDoor = true) { alert("la puerte esta abierta") }
+          if (profile1[3].unlockDoor = true) { alert("la puerte esta abierta") }
         }
 
         const modificarEstadoEnabled = () => {
-          if (profile1[0][0].enabled == true) {
+          if (profile1[0][0].enabled === true) {
             console.log("usuario dado de alta");
           }
           else { console.log("usuario dado de baja"); }
         }
 
         const modificarHorarioAccess = () => {
-          const startTime = profile1[0][0].accessTimes[0][1];
-          const endTime = profile1[0][0].accessTimes[0][0];
+          startTime = profile1[0][0].accessTimes[0][1];
+          endTime = profile1[0][0].accessTimes[0][0];
           console.log(startTime + endTime)
         }
-
         capturarHorarioPresionado();
         marcarTarjetaYMostrarAcceso();
         notificar();
         modificarEstadoEnabled();
         modificarHorarioAccess();
       })
-
-    /* const userName = profile1[0][cardsLength].username;
-     const date = timeAndDate;
-     const altaBajaUser = profile1[0][cardsLength].enabled;
-     const accessTime = profile1[0][cardsLength].accessTime;
-     const estructura = new EstructuraRegistro(userName, date, altaBajaUser, accessTime);
-     listaEstructuraRegistro.push(estructura);*/
   }
+
+  const actualizarDatoEnable = () => {
+    get(child(dbRef, 'profile'))
+      .then((snapshot) => {
+        var timbres = [];
+        snapshot.forEach(childSnapshot => {
+          timbres.push(childSnapshot.val());
+        });
+        console.log(timbres);
+        profile1 = timbres;
+      })
+      .then(() => {
+        const captureDataTime = () => {
+          current = new Date();
+          date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+          time = current.toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+          });
+          console.log(time);
+          console.log(date)
+          //const timeAndDate = ("A las "+ time + " el " + date);
+        }
+
+        captureDataTime();
+        //si los user nuevos se agregan en la primera posicion(la 0) de la lista Cards de la db , cambiar .lenghth por 0
+        const capturarHorarioPresionado = () => {
+          if (profile1[3].doorBell = true) {
+            console.log("el timbre se presionó")
+          }
+        }
+
+        const marcarTarjetaYMostrarAcceso = () => {
+          //muestra el ultimo usuario que paso la tarjeta
+          cardsLength = profile1[0].length - 1;
+          if (profile1[3].cardScan = true) {
+            console.log(profile1[0][cardsLength])
+          }
+          //poner si tiene o no accesso el user
+          if (profile1[0][cardsLength].enabled === true) { console.log(profile1[0][cardsLength].username + " tiene accesso") }
+          if (profile1[0][cardsLength].enabled === false) { console.log(profile1[0][cardsLength].username + " no tiene accesso") }
+        }
+
+        const notificar = () => {
+          if (profile1[3].unlockDoor = true) { alert("la puerte esta abierta") }
+        }
+
+        const modificarEstadoEnabled = () => {
+          if (profile1[0][0].enabled === true) {
+            console.log("usuario dado de alta");
+          }
+          else { console.log("usuario dado de baja"); }
+        }
+
+        const modificarHorarioAccess = () => {
+          startTime = profile1[0][0].accessTimes[0][1];
+          endTime = profile1[0][0].accessTimes[0][0];
+          console.log(startTime + endTime)
+        }
+        capturarHorarioPresionado();
+        marcarTarjetaYMostrarAcceso();
+        notificar();
+        modificarEstadoEnabled();
+        modificarHorarioAccess();
+      })
+      .then(() => {
+        var enabledActualizado = {
+          accessTimes: [
+            {
+              "endTime": 17,
+              "startTime": 8
+            }
+          ],
+          enabled: false,
+          id: "11 9E D4 23",
+          username: "admin"
+        };
+
+        firebase.database().ref('profile/cards/0').set(enabledActualizado);
+      })
+  }
+
+  /*setInterval(() => {
+    getInfoDb();
+    console.log("sdf")
+  }, 3000)*/
+
+  /* const userName = profile1[0][cardsLength].username;
+   const date = timeAndDate;
+   const altaBajaUser = profile1[0][cardsLength].enabled;
+   const accessTime = profile1[0][cardsLength].accessTime;
+   const estructura = new EstructuraRegistro(userName, date, altaBajaUser, accessTime);
+   listaEstructuraRegistro.push(estructura);*/
 
   return (
     <div id="main">
@@ -168,8 +253,8 @@ function App() {
           <h1>Registro del timbre</h1>
           <article>
             <div className='infoRegistro'>
-            <img src={require('./img/bell.png')} />
-            <hr />
+              <img src={require('./img/bell.png')} />
+              <hr />
               <div id="tiempo">
                 <h3>Timbre presionado por UserX</h3>
                 <p>18:05:32hs el 16/12/2022</p>
@@ -179,8 +264,7 @@ function App() {
             </div>
 
             <div className="btns">
-              <button onClick={bajaUsuario}>DAR DE BAJA</button>
-              <button onClick={altaUsuario}>DAR DE ALTA</button>
+              <button onClick={actualizarDatoEnable}>DAR DE ALTA</button>
             </div>
           </article>
         </section>
