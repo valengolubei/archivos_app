@@ -63,7 +63,7 @@ img {
   padding: 1em;
 }
 
-#login {
+.login {
   display: flex;
   flex-direction: column;
   align-items: center;
